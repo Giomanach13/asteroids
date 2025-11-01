@@ -1,7 +1,7 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
-import pygame
+import pygame, sys
 from constants import *
 from player import Player
 from asteroidfield import *
@@ -35,6 +35,9 @@ def main():
         updateable.update(dt)
         for i in drawable:
             i.draw(screen)
+        for asteroid in asteroids:
+            if asteroid.collide(player):
+                sys.exit("Game Over!")
         pygame.display.flip()
 
         # limit the framerate to 60 FPS
